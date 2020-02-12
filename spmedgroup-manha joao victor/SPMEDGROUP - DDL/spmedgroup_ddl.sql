@@ -29,6 +29,7 @@ CREATE TABLE clinica
 CREATE TABLE medico
 	(
 		idMedico			INT PRIMARY KEY IDENTITY,
+		nomeMedico			VARCHAR(255),
 		email				VARCHAR(255),
 		crm					VARCHAR(100),
 		senha				VARCHAR(255),
@@ -36,6 +37,8 @@ CREATE TABLE medico
 		idClinica			INT FOREIGN KEY REFERENCES clinica (idClinica),
 		idEspecialidade		INT FOREIGN KEY REFERENCES especialidade(idEspecialidade)
 	);
+
+	SELECT * FROM medico
 
 CREATE TABLE usuario
 	(
@@ -53,8 +56,12 @@ CREATE TABLE usuario
 CREATE TABLE consulta
 	(
 		idConsulta			INT PRIMARY KEY IDENTITY,
-		descricao			VARCHAR(255),
 		situacao			VARCHAR(255),
-		dataConsulta		DATETIME
+		dataConsulta		DATETIME2,
+		idUsuario			INT FOREIGN KEY REFERENCES usuario (idUsuario),
+		idMedico			INT FOREIGN KEY REFERENCES medico (idMedico)
 	);
+
+	DROP TABLE consulta;
+
 	
